@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Movie.destroy_all
+List.destroy_all
+
 List.create(name: "Films d'horreur")
 List.create(name: "Films de romance")
 List.create(name: "Films d'aventure")

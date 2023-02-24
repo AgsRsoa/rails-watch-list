@@ -1,2 +1,30 @@
-<%= link_to '+ Ajouter un bookmark', new_list_bookmark_path(@list)  %>
+<h1><%= @list.name %></h1>
+
+<%# une liste has many bookmarks %>
+<%# un bookmark belongs_to a movie  %>
+<div class="container">
+  <% @list.bookmarks.all.each do |bookmark| %>
+  <div class="card">
+    <%= image_tag bookmark.movie.poster_url, alt: "poster", width: '100px'%>
+    <div>
+      <h4><%= bookmark.movie.title %></h4>
+      <p><strong>Overview: </strong><%= bookmark.movie.overview %> <strong>Rating: </strong><%= bookmark.movie.rating %></p>
+      <p><%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this bookmark?" } do%>
+      <i class="fa-solid fa-trash"></i> Delete this bookmark
+      <% end %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+
+<%# faire poster_url avec image_tag %>
 <%# il faut dire sur quelle liste une instance %>
+<%= link_to '+ Ajouter un bookmark', new_list_bookmark_path(@list)  %>
+
+      <%#= link_to task_path(task), data: {turbo_method: :delete} do %>
+        <%# <i class="fa-solid fa-trash"></i>
+      <% end %>
+
+<%#= link_to "delete the bookmark", bookmark_path(bookmark), class: "btn btn-cancel", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this bookmark?" } %>
